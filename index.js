@@ -2,10 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const leagueRoutes = require('./routes/league');
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/leagues', leagueRoutes);
+
 
 const leagueRoutes = require('./routes/league');
 app.use('/api/leagues', leagueRoutes);
