@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-const LeagueSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const leagueSchema = new mongoose.Schema({
+  name: { type: String, required: true },
   country: String,
+  ageGroup: String,
 });
 
-module.exports = mongoose.model('League', LeagueSchema);
+module.exports = mongoose.model('League', leagueSchema);
+
