@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const League = require('../models/League');
+const League = require('../models/League'); // Adjust the path if your model is elsewhere
 
 // GET all leagues
 router.get('/', async (req, res) => {
@@ -12,17 +12,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST create a new league
+// POST new league
 router.post('/', async (req, res) => {
   try {
-    const newLeague = new League({
-      name: req.body.name,
-      country: req.body.country,
-    });
+    const { name, country, ageGroup } = req.body;
+
+    // Create new League document
+    const newLeague = new League({ name, country, ageGroup });
     const savedLeague = await newLeague.save();
-    res.status(201).json(savedLeague);
+
+    res.status(201).json(savedLeague); // Send back the saved league
   } catch (err) {
-    res.status(400).json({ error: 'Bad Request' });
+    res.status(500).json({ error: 'Failed to create league' });
   }
 });
 
